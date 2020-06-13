@@ -24,16 +24,26 @@ textarea {
     max-width: 280px;
 }
 
+/* TWEAKS */
+
+.navbar-inverse .navbar-brand {
+    color: white !important;
+}
+
 /* CODE ONEWARD   
  *   styles for Code Onward tweaks and overrides
 */
 
-.co-footer {
-    padding: 4rem 3rem;
+.co-navbar, .co-footer {
+    background: #222971 !important;
+    /*
+    background: -webkit-linear-gradient(to right, #00001a, #00004d) !important;
+    background: linear-gradient(to right, #00001a, #00004d !important);
+*/
+}
 
-    background: #ff5f6d;
-    background: -webkit-linear-gradient(to right, #00001a, #00004d);
-    background: linear-gradient(to right, #00001a, #00004d);
+.co-footer {
+    padding: 4rem 3rem 0rem 3rem;
 }
 
 .co-credit {
@@ -44,6 +54,19 @@ textarea {
 }
 
 .co-social {
-    padding: 4rem 3rem;
+    padding: 2rem 1rem 2rem 1rem;
 }
 
+.co-grid {
+    margin-bottom: 15px;
+}
+
+
+.co-grid [class^="col-"] {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: #eee;
+    background-color: rgba(86, 61, 124, .15);
+    border: 1px solid #ddd;
+    border: 1px solid rgba(86, 61, 124, .2);
+}
