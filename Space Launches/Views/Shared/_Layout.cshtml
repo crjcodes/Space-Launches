@@ -3,9 +3,11 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>Orbital Launch - Portfolio Project by crjcodes at Code Onward</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+    <link href="~/lib/font-awesome/css/all.css" rel="stylesheet" />
+    <script src="~/lib/font-awesome/js/all.js"></script>
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -16,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Orbital Launches from Code Onward", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
@@ -30,8 +32,24 @@
     <div class="container body-content">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="page-footer co-footer">
+            <div>
+                <div class="co-credit text-center">
+                    <p class="mb-4">A <a href="https://codeonward.com/series/olaunch/">mini-project</a> in the <a href="https://codeonward.com/portfolio/">portfolio</a> of crjcodes of <a href="https://codeonward.com/">CodeOnward.com</a></p>
+                </div>
+                <!-- Copyright -->
+                <div class="footer-copyright text-center text-muted py-3">
+                    Non-commercial use only
+                </div>
+                <div class="co-social text-center">
+                    <ul class="list-inline mt-4">
+                        <li class="list-inline-item"><a href="https://www.linkedin.com/in/crjcodes/" target="_blank" title="linkedin"><i class="fab fa-2x fa-linkedin"></i></a></li>
+                        <li class="list-inline-item"><a href="https://www.facebook.com/crjcodes" target="_blank" title="facebook"><i class="fab fa-2x fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="https://github.com/crjcodes" target="_blank" title="github"><i class="fab fa-2x fa-github"></i></a></li>
+                    </ul>
+
+                </div>
+            </div>
         </footer>
     </div>
 

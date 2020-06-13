@@ -4,6 +4,7 @@
 }
 
 /* Set padding to keep content from hitting the edges */
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
@@ -22,3 +23,27 @@ select,
 textarea {
     max-width: 280px;
 }
+
+/* CODE ONEWARD   
+ *   styles for Code Onward tweaks and overrides
+*/
+
+.co-footer {
+    padding: 4rem 3rem;
+
+    background: #ff5f6d;
+    background: -webkit-linear-gradient(to right, #00001a, #00004d);
+    background: linear-gradient(to right, #00001a, #00004d);
+}
+
+.co-credit {
+    font-family: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
+    font-style: italic;
+    font-size: large;    
+    color: #90b6f8;
+}
+
+.co-social {
+    padding: 4rem 3rem;
+}
+
