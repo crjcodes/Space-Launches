@@ -1,24 +1,57 @@
-﻿@{
-    ViewBag.Title = "Orbital Launches";
-}
+﻿@model Space_Launches.Models.LaunchCollectionModel
 
-    <div class="container-fluid co-grid">
-        <div class="row">
-            <div class="col-sm-4">Name</div>
-            <div class="col-sm-4">Date</div>
-            <div class="col-sm-4">Location</div>
-            <div class="w-100"></div>
-            <div class="col-sm-4">{Launch name here}</div>
-            <div class="col-sm-4">{Launch date here}</div>
-            <div class="col-sm-4">{Launch date location}</div>
-            <div class="w-100"></div>
-            <div class="col-sm-4">{Launch name here}</div>
-            <div class="col-sm-4">{Launch date here}</div>
-            <div class="col-sm-4">{Launch date location}</div>
-            <div class="w-100"></div>
-            <div class="col-sm-4">{Launch name here}</div>
-            <div class="col-sm-4">{Launch date here}</div>
-            <div class="col-sm-4">{Launch date location}</div>
-        </div>
+
+<h2>@ViewBag.Title @ViewBag.SyncOrAsync</h2>
+
+<p>Total: @Html.DisplayFor(model => model.Total) </p>
+<p>Count: @Html.DisplayFor(model => model.Count) </p>
+
+<table>
+    <tr>
+        <th>
+            Header Col 1
+        </th>
+        <th>
+            Header Col 2
+        </th>
+    </tr>
+    @foreach (var launch in Model.Launches)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modalItem => launch.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modalItem => launch.Net)
+            </td>
+
+        </tr>
+    }
+
+
+</table>
+
+<hr />
+
+
+
+<div class="container-fluid co-grid">
+    <div class="row">
+        <div class="col-sm-4">Name</div>
+        <div class="col-sm-4">Date</div>
+        <div class="col-sm-4">Location</div>
+        <div class="w-100"></div>
+        <div class="col-sm-4">{Launch name here}</div>
+        <div class="col-sm-4">{Launch date here}</div>
+        <div class="col-sm-4">{Launch date location}</div>
+        <div class="w-100"></div>
+        <div class="col-sm-4">{Launch name here}</div>
+        <div class="col-sm-4">{Launch date here}</div>
+        <div class="col-sm-4">{Launch date location}</div>
+        <div class="w-100"></div>
+        <div class="col-sm-4">{Launch name here}</div>
+        <div class="col-sm-4">{Launch date here}</div>
+        <div class="col-sm-4">{Launch date location}</div>
     </div>
+</div>
 
