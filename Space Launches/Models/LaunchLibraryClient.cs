@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.ModelBinding;
 using System.Web.UI.WebControls;
+using Microsoft.Ajax.Utilities;
 using Newtonsoft.Json;
 
 namespace Space_Launches.Models
@@ -56,13 +57,19 @@ namespace Space_Launches.Models
 
         public async Task<LaunchCollectionModel> GetLaunchCollectionAsync(
                                                 string queryParam = "", 
-                                                CancellationToken cancelToken = new CancellationToken())
+                                                CancellationToken cancelToken = default(CancellationToken))
         {
             // TODO: exception handling
 
             LaunchCollectionModel launchCollectionModel = null;
 
-            var response = await _LaunchHttpClient.GetAsync("launch");
+            var response = await _LaunchHttpClient.GetAsync("launch", cancelToken);
+
+            if (cancelToken.IsCancellationRequested)
+            {
+                // right way to break?? Throw an exception? Use TaskCanceledException?
+//                break;
+            }
 
             // throw exception if not successful
             response.EnsureSuccessStatusCode();
@@ -77,32 +84,5 @@ namespace Space_Launches.Models
 
             return launchCollectionModel;
         }
-
-
-
-/*
-        public static async Task<LaunchCollectionModel> GetLaunchesAsync(string queryParams)
-        {
-            LaunchCollectionModel launchCollection = null;
-
-            var responseTask = HttpClient.GetAsync(queryParams);
-            responseTask.Wait();
-
-            var result = responseTask.Result;
-            if (result.IsSuccessStatusCode)
-            {
-                var jsonContentString = result.Content.ReadAsStringAsync();
-                jsonContentString.Wait();
-
-                launchCollection = JsonConvert.DeserializeObject<LaunchCollectionModel>(jsonContentString);
-            }
-            else
-            {
-                // TODO: error message
-            }
-            return launchCollection;
-        }
-        */
-
     }
 }

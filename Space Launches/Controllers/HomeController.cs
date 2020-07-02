@@ -42,6 +42,8 @@ namespace Space_Launches.Controllers
             return View("Launches", await _LaunchApiClient.GetLaunchCollectionAsync(cancellationToken));
         }
         */
+
+            /*
         public async Task<ActionResult> Index()
         {
             ViewBag.SyncOrAsync = "Asynchronous";
@@ -50,28 +52,18 @@ namespace Space_Launches.Controllers
             LaunchCollectionModel model = (LaunchCollectionModel) result.Model;
             return View(model);
         }
+        */
 
-        /*
-        public ActionResult Index()
+        [AsyncTimeout(8000)]
+        [HandleError(ExceptionType = typeof(TimeoutException), View = "Error")]
+        public async Task<ActionResult> Index()
         {
-            ViewBag.Title = "Empty Index";
-            return View();
+            ViewBag.SyncOrAsync = "Asynchronous";
+            ViewBag.Title = "Launch List";
+            ViewResult result = (ViewResult)await GetLaunchCollectionAsync();
+            LaunchCollectionModel model = (LaunchCollectionModel)result.Model;
+            return View(model);
         }
-        */
-
-        /*
-                [HttpGet]
-                [AsyncTimeout(8000)]
-                [HandleError(ExceptionType = typeof(TimeoutException), View = "TimedOut")]
-                public async Task<ActionResult> Index(CancellationToken cancellationToken)
-                {
-                    LaunchCollectionModel workingLaunchCollection = new LaunchCollectionModel();
-
-                    workingLaunchCollection = await _LaunchApiClient.GetLaunchCollectionAsync("launch",cancellationToken);
-
-                    return View(workingLaunchCollection);
-                }
-        */
 
         public ActionResult About()
         {
@@ -85,6 +77,24 @@ namespace Space_Launches.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        protected override void OnException(ExceptionContext filterContext)
+        {
+            //base.OnException(filterContext);
+
+            filterContext.ExceptionHandled = true;
+
+            // TODO:_Logger.Error(filterContext.Exception);
+
+            //Redirect or return a view, but not both.
+            //            filterContext.Result = RedirectToAction("Index", "ErrorHandler");
+            // OR 
+
+            ViewResult vr = new ViewResult();
+            vr.ViewName = "~/Views/Error/Error.cshtml";
+            vr.ViewBag.Title = "Probably Timeout";
+            filterContext.Result = vr;
         }
     }
 }
