@@ -18,10 +18,6 @@ TBD
 
 ## Links
 
-Even though this information can be found inside the project on machine-readable
-format like in a .json file, it's good to include a summary of most useful
-links to humans using your project. You can include links like:
-
 - Project homepage: https://codeonward.com/series/olaunch
 - Repository: https://github.com/crjcodes/Space-Launches
 - Issue tracker: TBD

@@ -28,31 +28,7 @@ namespace Space_Launches.Controllers
         {
             ViewBag.SyncOrAsync = "Asynchronous";
             return View("Launches", await _LaunchApiClient.GetLaunchCollectionAsync());
-        }
-
-        /*
-        [AsyncTimeout(50)]
-        [HandleError(ExceptionType = typeof(TimeoutException), View = "TimeoutError")]
-        public async Task<ActionResult> CancelGetLauncheCollectionAsync(CancellationToken cancellationToken)
-        {
-            ViewBag.SyncOrAsync = "Asynchronous";
-
-            var launchesTask = _LaunchApiClient.GetLaunchCollectionAsync(cancellationToken);
-
-            return View("Launches", await _LaunchApiClient.GetLaunchCollectionAsync(cancellationToken));
-        }
-        */
-
-            /*
-        public async Task<ActionResult> Index()
-        {
-            ViewBag.SyncOrAsync = "Asynchronous";
-            ViewBag.Title = "Asynchronous Index";
-            ViewResult result = (ViewResult) await GetLaunchCollectionAsync();
-            LaunchCollectionModel model = (LaunchCollectionModel) result.Model;
-            return View(model);
-        }
-        */
+        }         
 
         [AsyncTimeout(8000)]
         [HandleError(ExceptionType = typeof(TimeoutException), View = "Error")]

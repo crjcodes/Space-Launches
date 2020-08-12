@@ -8,10 +8,13 @@ namespace Space_Launches.Models
     public class LaunchCollectionModel
     {
         // formerly "Launch[]"
-        public LaunchModel[] Launches { get; set; }
-        public int Total { get; set; }
-        public int Offset { get; set; }
         public int Count { get; set; }
+        public string Next { get; set; }
+        public string Previous { get; set; }
+        public LaunchModel[] Results { get; set; }
 
+        public int CurrentCount() {
+            return Results.Length;                       
+        }
     }
 }

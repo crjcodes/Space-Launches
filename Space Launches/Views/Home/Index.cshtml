@@ -3,32 +3,18 @@
 
 <h2>@ViewBag.Title</h2>
 
-<p>Total: @Html.DisplayFor(model => model.Total) </p>
-<p>Count: @Html.DisplayFor(model => model.Count) </p>
+<p>Total: @Html.DisplayFor(model => model.Count) </p>
+<!-- p>Current Number of Results: Html.DisplayFor(model => model.CurrentCount()) </p -->
 
 <div class="container-fluid co-grid">
     <div class="row">
         <div class="col-sm-4">Name</div>
-        <div class="col-sm-4">Date</div>
-        <div class="col-sm-4">Location</div>
-        @foreach (var launch in Model.Launches)
+        <div class="col-sm-4">Id</div>
+        @foreach (var launch in Model.Results)
         {
-            // TODO: move this to the model
-            string name = launch.Name;
-            string description = "";
-
-            string[] results = launch.Name.Split('|');
-
-            if ( results.Length > 1 )
-            {
-                name = results[0];
-                description = results[1];
-            }
-
             <div class="w -100"></div>
-            <div class="col-sm-4">@name</div>
-            <div class="col-sm-4">@description</div>
-            <div class="col-sm-4">@Html.DisplayFor(modalItem => launch.Net)</div>
+            <div class="col-sm-4">@launch.Name</div>
+            <div class="col-sm-4">@launch.Id</div>
         }
     </div>
 </div>

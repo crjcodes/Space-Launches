@@ -17,7 +17,7 @@ namespace Space_Launches.Models
 {
     public class LaunchLibraryClient
     {
-        private static readonly string ApiBaseURL = "https://launchlibrary.net/1.4/";
+        private static readonly string ApiBaseURL = "https://ll.thespacedevs.com/2.0.0/launch";
         private static readonly HttpClient _LaunchHttpClient;
         static LaunchLibraryClient()
         {
@@ -55,15 +55,24 @@ namespace Space_Launches.Models
         }
         */
 
+        // all of the GET request and deserialization are run asynchronously
+        // TBD: add support for cancellation if it takes too long
+        // TBD: exception handling, starting with the most-prone-to-fail single-point failures
         public async Task<LaunchCollectionModel> GetLaunchCollectionAsync(
-                                                string queryParam = "", 
+                                                string queryParam = "?format=json", 
                                                 CancellationToken cancelToken = default(CancellationToken))
         {
+            /*
             // TODO: exception handling
+            //  -- formatting problem in query
+            //  -- cancellation
+            //  -- if GET fails for whatever reason
+            //  -- if the result in error 
+            //  -- if the result is in a bad format
+            //  -- timeout?
+            //  -- other possible exceptions
 
-            LaunchCollectionModel launchCollectionModel = null;
-
-            var response = await _LaunchHttpClient.GetAsync("launch", cancelToken);
+            var response = await _LaunchHttpClient.GetAsync(queryParam, cancelToken);
 
             if (cancelToken.IsCancellationRequested)
             {
@@ -73,16 +82,39 @@ namespace Space_Launches.Models
 
             // throw exception if not successful
             response.EnsureSuccessStatusCode();
-            //launchCollectionModel = await response.Content.ReadAsAsync<LaunchCollectionModel>();
+            */
 
-            launchCollectionModel =
-                JsonConvert.DeserializeObject<LaunchCollectionModel>(
-                        await response.Content.ReadAsStringAsync()
-                        );
+            string result = null;
+            //string result = await response.Content.ReadAsStringAsync();
+            LaunchCollectionModel launchCollection = null;
 
-            // TODO: error case
+            // TBD: move to a unit test
 
-            return launchCollectionModel;
+            result = @"{
+                'count': 1820,
+                'next': 'https://ll.thespacedevs.com/2.0.0/launch/?format=json&limit=10&offset=10',
+                'previous': null,
+                'results': [
+                {
+                    'id': '9279744e-46b2-4eca-adea-f1379672ec81',
+                    'url': 'https://ll.thespacedevs.com/2.0.0/launch/9279744e-46b2-4eca-adea-f1379672ec81/?format=json',
+                    'launch_library_id': 1829,
+                    'slug': 'atlas-lv-3a-samos-2',
+                    'name': 'Atlas LV-3A | Samos 2',
+                }
+                ]
+            }";
+
+
+            launchCollection = ConvertModel(result);
+
+            return launchCollection;
+        }
+
+        public LaunchCollectionModel ConvertModel(string responseContent)
+        {
+            return JsonConvert.DeserializeObject<LaunchCollectionModel>(responseContent);
+            
         }
     }
 }
