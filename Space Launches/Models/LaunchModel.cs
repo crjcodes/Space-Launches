@@ -16,7 +16,6 @@ namespace Space_Launches.Models
         public string Slug { get; set; }
         public string Name { get; set; }
 
-        /*
         public Status Status { get; set; }
         public DateTimeOffset Net { get; set; }
         
@@ -39,7 +38,7 @@ namespace Space_Launches.Models
         public string Hashtag { get; set; }
         
         // Keeping the use case simple for now
-        */
+
         /*
         public LaunchServiceProvider LaunchServiceProvider { get; set; }
         
