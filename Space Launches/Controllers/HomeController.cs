@@ -35,7 +35,7 @@ namespace Space_Launches.Controllers
         public async Task<ActionResult> Index()
         {
             ViewBag.SyncOrAsync = "Asynchronous";
-            ViewBag.Title = "Launch List";
+            ViewBag.Title = "Upcoming Launch List";
             ViewResult result = (ViewResult)await GetLaunchCollectionAsync();
             LaunchCollectionModel model = (LaunchCollectionModel)result.Model;
             return View(model);
@@ -55,22 +55,35 @@ namespace Space_Launches.Controllers
             return View();
         }
 
-        protected override void OnException(ExceptionContext filterContext)
+        public ActionResult Error(Exception exception)
         {
-            //base.OnException(filterContext);
+            var code = (exception is HttpException) ? (exception as HttpException).GetHttpCode() : 500;
 
-            filterContext.ExceptionHandled = true;
+//            var message = String.Format(Strings_Errors.Error500, code);
+            var message = String.Format("Code {0}:", code);
+            var subtitle = "";
 
-            // TODO:_Logger.Error(filterContext.Exception);
+//            var appSpecific = (exception is YourApplicationBaseException);
+//            if (code == 404)
+//                message = Strings_Errors.Error404;
 
-            //Redirect or return a view, but not both.
-            //            filterContext.Result = RedirectToAction("Index", "ErrorHandler");
-            // OR 
+            if (code == 500)
+            {
+//                if (appSpecific)
+//                    message = exception.Message;
+//                else
+                    subtitle = exception.Message;
+            }
 
-            ViewResult vr = new ViewResult();
-            vr.ViewName = "~/Views/Error/Error.cshtml";
-            vr.ViewBag.Title = "Probably Timeout";
-            filterContext.Result = vr;
+//            var model = new ErrorViewModel(message, appSpecific)
+//            {
+//                ErrorOccurred = { StatusCode = code, Subtitle = subtitle }
+//            };
+
+            ViewBag.message = message;
+            ViewBag.subtitle = subtitle;
+            return View("Error");
         }
+
     }
 }

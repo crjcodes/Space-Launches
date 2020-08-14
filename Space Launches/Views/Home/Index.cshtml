@@ -6,16 +6,22 @@
 <p>Total: @Html.DisplayFor(model => model.Count) </p>
 <!-- p>Current Number of Results: Html.DisplayFor(model => model.CurrentCount()) </p -->
 
-<div class="container-fluid co-grid">
-    <div class="row">
-        <div class="col-sm-4">Name</div>
-        <div class="col-sm-4">Id</div>
+<table class="table table-striped">
+    <thead class="thead-dark">
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Status</th>
+            <th scope="col">Launch Time</th>
+        </tr>
+    </thead>
+    <tbody>
         @foreach (var launch in Model.Results)
         {
-            <div class="w -100"></div>
-            <div class="col-sm-4">@launch.Name</div>
-            <div class="col-sm-4">@launch.Id</div>
+        <tr>
+            <td>@(launch.Name != null ? launch.Name : "n/a")</td>
+            <td>@(launch.Status != null && launch.Status.Name != null ? launch.Status.Name : "n/a")</td>
+            <td>@(launch.Net != null ? launch.Net : new DateTimeOffset())</td>
+        </tr>
         }
-    </div>
-</div>
-
+    </tbody>
+</table>

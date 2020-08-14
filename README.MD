@@ -12,6 +12,9 @@ This app is under development and has not yet released
 This app allows the user to navigate upcoming space launches.  While the user interface and 
 controlling code is written by crjcodes, the data comes from an open source external API.
 
+## Design and Planning
+- Error Handling: https://github.com/crjcodes/Space-Launches/Planning/ErrorHandling.MD
+
 ## Contributing
 
 TBD
