@@ -46,11 +46,17 @@ textarea {
     padding: 4rem 3rem 0rem 3rem;
 }
 
+
 .co-credit {
     font-family: Cambria, "Hoefler Text", Utopia, "Liberation Serif", "Nimbus Roman No9 L Regular", Times, "Times New Roman", serif;
     font-style: italic;
     font-size: large;    
     color: #90b6f8;
+}
+
+.co-version {
+  font-size: smaller;
+  color: #ffffff;
 }
 
 .co-social {
