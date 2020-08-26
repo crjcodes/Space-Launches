@@ -9,10 +9,19 @@ namespace Space_Launches.Controllers
     public class ErrorController : Controller
     {
         // GET: Error
-        public ActionResult Error()
+        public ActionResult Index()
         {
-            Response.StatusCode = (int)System.Net.HttpStatusCode.InternalServerError;
-            Response.TrySkipIisCustomErrors = true;
+            //Server.ClearError();
+            //Response.TrySkipIisCustomErrors = true;
+            ViewBag.Title = "Unknown Error";
+            return View();
+        }
+
+        public ActionResult NotFound()
+        {
+            //Server.ClearError();
+            //Response.TrySkipIisCustomErrors = true;
+            ViewBag.Title = "Invalid Request";
             return View();
         }
     }

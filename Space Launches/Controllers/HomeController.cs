@@ -55,6 +55,7 @@ namespace Space_Launches.Controllers
             return View();
         }
 
+        /*
         public ActionResult Error(Exception exception)
         {
             var code = (exception is HttpException) ? (exception as HttpException).GetHttpCode() : 500;
@@ -84,6 +85,6 @@ namespace Space_Launches.Controllers
             ViewBag.subtitle = subtitle;
             return View("Error");
         }
-
+        */
     }
 }
